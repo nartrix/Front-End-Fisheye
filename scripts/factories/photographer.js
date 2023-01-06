@@ -12,6 +12,7 @@ function photographerFactory(data) {
         article.appendChild(img);
         article.appendChild(h2);
         return (article);
+        
     }
     return { name, picture, getUserCardDOM }
 }
