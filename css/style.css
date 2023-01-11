@@ -52,16 +52,13 @@ h1 {
     width: 200px;
 
     overflow: hidden;
-    position: relative;
     border-radius: 50%;
 }
 
 .photographer_section article a img {
-    position:absolute;
-    height: 358px;
-    width: 526px;
-    left: -81%;
-    top: -24%;
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
 }
 
 .photographer_section article p {
