@@ -11,34 +11,36 @@ function getUserCardDOM(data) {
   const article = document.createElement("article");
 
   article.innerHTML = `
-          <a href="./photographer.html?id=${data.id}">
-              <img src="${data.picture}" alt="${data.name}"> </img>
-          </a>
+    <a href="./photographer.html?id=${data.id}">
+        <img src="${data.picture}" alt="${data.name}"> </img>
+    </a>
 
-          <h2>${data.name}</h2>
+    <h2>${data.name}</h2>
 
-          <p class="location">${data.city}, ${data.country}</p>
-          <p class="tagline">${data.tagline}</p>
-          <p class="price">${data.price}€/par jour</p>
-      `;
+    <p class="location">${data.city}, ${data.country}</p>
+    <p class="tagline">${data.tagline}</p>
+    <p class="price">${data.price}€/par jour</p>
+  `;
   return article;
 }
 
 function getPhotographerInfos(data) {
-  const photographersSection = document.querySelector(".photographer_section");
+  const photographHeader = document.querySelector(".photograph-header");
 
-  photographersSection.innerHTML = `
-          <a href="./photographer.html?id=${data.id}">
-              <img src="${data.picture}" alt="${data.name}"> </img>
-          </a>
+  photographHeader.innerHTML = `
+    <div class="photograph_infos"> 
+      <h1>${data.name}</h1>
+      <p class="location">${data.city}, ${data.country}</p>
+      <p class="tagline">${data.tagline}</p>
+    </div>
 
-          <h2>${data.name}</h2>
+    <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
 
-          <p class="location">${data.city}, ${data.country}</p>
-          <p class="tagline">${data.tagline}</p>
-          <p class="price">${data.price}€/par jour</p>
-      `;
-  return photographersSection;
+    <a href="./photographer.html?id=${data.id}">
+        <img src="${data.picture}" alt="${data.name}"> </img>
+    </a>      
+  `;
+  return photographHeader;
 }
 
 export { photographerFactory, getUserCardDOM, getPhotographerInfos};
