@@ -27,8 +27,11 @@ async function displayData(photographers, media) {
     const photographerModel = photographerFactory(currentPhotographer);
     getPhotographerInfos(photographerModel);
 
+    // Filtrer les medias afin de récupérer les medias selon le photographerId
     const currentMedias = media.filter(dataMedia => dataMedia.photographerId === parseInt(photographerId, 10));
     const photographMedia = document.querySelector(".media-content");
+
+    // Affichage des données
     currentMedias.forEach(currentMedia => {
         const mediaModel = mediaFactory(currentMedia, currentPhotographer);
         const mediaCard = getPhotographerMedia(mediaModel);

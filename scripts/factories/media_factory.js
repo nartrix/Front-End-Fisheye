@@ -6,8 +6,6 @@ function mediaFactory(mediaData, photographerData) {
     const namePhotographer = name.split(" ");
     const pathName = namePhotographer[0].replace("_"," ");
     const media = `assets/media/${pathName}/${image ? image : video}`;
-
-    
   
     return { title, likes, media, name, image};
 }
