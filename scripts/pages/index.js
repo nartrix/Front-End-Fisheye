@@ -1,16 +1,19 @@
-import { photographerFactory, getUserCardDOM } from "../factories/photographer.js";
+import {
+  photographerFactory,
+  getUserCardDOM,
+} from "../factories/photographer.js";
 
 async function getPhotographers() {
   return fetch("./data/photographers.json")
-      .then((res) => {
-          if (res.ok) {
-              return res.json();
-          }
-      })
-      .then((data) => data)
-      .catch((err) => {
-          alert(`Erreur : ${err}`);
-      });
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    })
+    .then((data) => data)
+    .catch((err) => {
+      alert(`Erreur : ${err}`);
+    });
 }
 
 async function displayData(photographers) {

@@ -4,7 +4,7 @@ function photographerFactory(data) {
 
   const picture = `assets/photographers/${portrait}`;
 
-  return { name, id, city, country, tagline, price, picture};
+  return { name, id, city, country, tagline, price, picture };
 }
 
 function getUserCardDOM(data) {
@@ -43,4 +43,13 @@ function getPhotographerInfos(data) {
   return photographHeader;
 }
 
-export { photographerFactory, getUserCardDOM, getPhotographerInfos};
+function LikesCard(currentPhotographer, likesCount) {
+  //Create card of likes count and price
+  const photographerMedia= document.querySelector(".photograph-media");
+  const likesPrice = document.createElement("div");
+  likesPrice.classList.add("likes-price");
+  likesPrice.innerHTML = `<span class="likes-count">${likesCount}</span><i class="fa-solid fa-heart"></i><span>${currentPhotographer.price}€ / jour</span>`;
+  photographerMedia.appendChild(likesPrice);
+}
+
+export { photographerFactory, getUserCardDOM, getPhotographerInfos, LikesCard };
