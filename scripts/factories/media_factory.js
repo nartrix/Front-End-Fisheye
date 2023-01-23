@@ -29,6 +29,7 @@ function getPhotographerMedia(currentMedia) {
   divLikes.classList.add("likes");
   heart.classList.add("fa-regular", "fa-heart");
   heart.setAttribute("aria-label", "likes");
+  
 
   //Text injected in HTML elements
   p.textContent = `${currentMedia.title}`;

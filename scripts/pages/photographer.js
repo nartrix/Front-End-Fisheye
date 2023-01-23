@@ -7,6 +7,7 @@ import {
   mediaFactory,
   getPhotographerMedia,
 } from "../factories/media_factory.js";
+import { sortList } from "../utils/sort.js";
 
 // Mettre le code JavaScript lié à la page photographer.html.
 const photographerUrl = window.location.search;
@@ -29,40 +30,65 @@ async function getPhotographers() {
 
 async function displayData(photographers, media) {
   // Récupération des données du photographe selon son id
-  const currentPhotographer = photographers.find(
-    (id) => id.id === parseInt(photographerId, 10)
-  );
-  console.log(currentPhotographer);
-  const photographerModel = photographerFactory(currentPhotographer);
+  const photographerModel = photographerFactory(photographers);
   getPhotographerInfos(photographerModel);
-
   // Filtrer les medias afin de récupérer les medias selon le photographerId
-  const currentMedias = media.filter(
-    (dataMedia) => dataMedia.photographerId === parseInt(photographerId, 10)
-  );
+
   const photographMedia = document.querySelector(".media-content");
 
   let likesTotal = 0;
   let likesCount = likesTotal;
 
   // Affichage des données
-  currentMedias.forEach((currentMedia) => {
-    const mediaModel = mediaFactory(currentMedia, currentPhotographer);
+  media.forEach((currentMedia) => {
+    const mediaModel = mediaFactory(currentMedia, photographers);
     const mediaCard = getPhotographerMedia(mediaModel);
     photographMedia.appendChild(mediaCard);
-
     likesCount += currentMedia.likes;
-    LikesCard(currentPhotographer, likesCount);
   });
 
-  
+  LikesCard(photographers, likesCount);
 }
+
+async function likesClick() {
+  const likeBtn = document.querySelectorAll(".likes button");
+  const totalLikes = document.querySelector(".likes-count");
+  
+  likeBtn.forEach((btn) => {
+      btn.addEventListener("click", () => {
+          const likeNumber = btn.parentNode.firstChild;
+
+          if (btn.firstChild.classList.contains("fa-regular")) {
+              btn.firstChild.classList.replace("fa-regular", "fa-solid");
+              likeNumber.textContent = (parseInt(likeNumber.textContent) + 1);
+              totalLikes.textContent = (parseInt(totalLikes.textContent) + 1);
+              
+          } else if (btn.firstChild.classList.contains("fa-solid")){
+              btn.firstChild.classList.replace("fa-solid", "fa-regular");
+              likeNumber.textContent = (parseInt(likeNumber.textContent) - 1);
+              totalLikes.textContent = (parseInt(totalLikes.textContent) - 1);
+          }
+      });
+  });
+}
+
 
 async function init() {
   // Récupération des données de photogrpahers et media
   const { photographers, media } = await getPhotographers();
-  displayData(photographers, media);
+  const currentPhotographer = photographers.find(
+    (id) => id.id === parseInt(photographerId, 10)
+  )
+  const currentMedias = media.filter(
+    (dataMedia) => dataMedia.photographerId === parseInt(photographerId, 10)
+  );
+  let sortCurrentMedias = currentMedias.sort((a, b) => (b.likes - a.likes));
+  displayData(currentPhotographer, sortCurrentMedias);
   Lightbox.init();
+  sortList(currentPhotographer, sortCurrentMedias);
+  likesClick();
 }
 
 init();
+
+export {displayData};
