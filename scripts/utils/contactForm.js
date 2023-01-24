@@ -9,7 +9,6 @@ function closeModal() {
 }
 
 // fermeture du modal par le biais de la touche esc
-// générer un focus sur tab
 function keyboardAcces(e) {
   if (e.key === "Escape") {
     closeModal();
@@ -40,7 +39,7 @@ const messageMsg1 = "Vous devez entre un message";
 const messageMsg2 =
   "Le message doit comporter au minimum 2 caractères et uniquement des lettres";
 
-// input validity test
+// Validation des input
 function inputValidation(e, msg1, msg2) {
   if (e.value == "") {
     if (e.required == true) {

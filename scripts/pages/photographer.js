@@ -29,10 +29,9 @@ async function getPhotographers() {
 }
 
 async function displayData(photographers, media) {
-  // Récupération des données du photographe selon son id
   const photographerModel = photographerFactory(photographers);
   getPhotographerInfos(photographerModel);
-  // Filtrer les medias afin de récupérer les medias selon le photographerId
+  
   const photographMedia = document.querySelector(".media-content");
   // Affichage des données
   media.forEach((currentMedia) => {
@@ -40,42 +39,43 @@ async function displayData(photographers, media) {
     const mediaCard = getPhotographerMedia(mediaModel);
     photographMedia.appendChild(mediaCard);
   });
-
 }
 
 async function likesClick() {
   const likeBtn = document.querySelectorAll(".likes button");
   const totalLikes = document.querySelector(".likes-count");
-  
-  likeBtn.forEach((btn) => {
-      btn.addEventListener("click", () => {
-          const likeNumber = btn.parentNode.firstChild;
 
-          if (btn.firstChild.classList.contains("fa-regular")) {
-              btn.firstChild.classList.replace("fa-regular", "fa-solid");
-              likeNumber.textContent = (parseInt(likeNumber.textContent) + 1);
-              totalLikes.textContent = (parseInt(totalLikes.textContent) + 1);
-              
-          } else if (btn.firstChild.classList.contains("fa-solid")){
-              btn.firstChild.classList.replace("fa-solid", "fa-regular");
-              likeNumber.textContent = (parseInt(likeNumber.textContent) - 1);
-              totalLikes.textContent = (parseInt(totalLikes.textContent) - 1);
-          }
-      });
+  likeBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const likeNumber = btn.parentNode.firstChild;
+
+      if (btn.firstChild.classList.contains("fa-regular")) {
+        btn.firstChild.classList.replace("fa-regular", "fa-solid");
+        likeNumber.textContent = parseInt(likeNumber.textContent) + 1;
+        totalLikes.textContent = parseInt(totalLikes.textContent) + 1;
+      } else if (btn.firstChild.classList.contains("fa-solid")) {
+        btn.firstChild.classList.replace("fa-solid", "fa-regular");
+        likeNumber.textContent = parseInt(likeNumber.textContent) - 1;
+        totalLikes.textContent = parseInt(totalLikes.textContent) - 1;
+      }
+    });
   });
 }
-
 
 async function init() {
   // Récupération des données de photogrpahers et media
   const { photographers, media } = await getPhotographers();
+  // Id photographer
   const currentPhotographer = photographers.find(
     (id) => id.id === parseInt(photographerId, 10)
-  )
+  );
+  // Filtrer les medias afin de récupérer les medias selon le photographerId
   const currentMedias = media.filter(
     (dataMedia) => dataMedia.photographerId === parseInt(photographerId, 10)
   );
-  const sortCurrentMedias = currentMedias.sort((a, b) => (b.likes - a.likes));
+
+  // Tri par likes
+  const sortCurrentMedias = currentMedias.sort((a, b) => b.likes - a.likes);
 
   displayData(currentPhotographer, sortCurrentMedias);
   likesCard(currentPhotographer, currentMedias);
@@ -86,4 +86,4 @@ async function init() {
 
 init();
 
-export {displayData, likesClick};
+export { displayData, likesClick };

@@ -1,6 +1,4 @@
-import { likesCard } from "../factories/photographer.js";
 import { displayData, likesClick } from "../pages/photographer.js";
-
 
 function sortList(currentPhotographer, currentMedias) {
   const sortSection = document.querySelector(".sort-section");
@@ -23,7 +21,7 @@ function sortList(currentPhotographer, currentMedias) {
   const optDate = document.querySelector(".optDate");
   const optTitle = document.querySelector(".optTitle");
   const optPopular = document.querySelector(".optPopular");
-
+ 
   selectElement.addEventListener("click", () => {
     selectElement
       .querySelector(".fa-chevron-down")
@@ -33,19 +31,19 @@ function sortList(currentPhotographer, currentMedias) {
   });
 
   optDate.addEventListener("click", () => {
-    currentMedias = currentMedias.sort((a, b) => b.date.localeCompare(a.date));
+    currentMedias = currentMedias.sort((a, b) => 
+    b.date.localeCompare(a.date)); // trie par date
     refreshSortList(currentMedias, currentPhotographer, "date");
   });
 
   optTitle.addEventListener("click", () => {
     currentMedias = currentMedias.sort((a, b) =>
-      a.title.localeCompare(b.title)
-    );
+      a.title.localeCompare(b.title)); // trie par titre
     refreshSortList(currentMedias, currentPhotographer, "title");
   });
 
   optPopular.addEventListener("click", () => {
-    currentMedias = currentMedias.sort((a, b) => b.likes - a.likes);
+    currentMedias = currentMedias.sort((a, b) => b.likes - a.likes); // trie par likes
     refreshSortList(currentMedias, currentPhotographer, "popular");
   });
 }

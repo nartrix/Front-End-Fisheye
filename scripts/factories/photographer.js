@@ -11,8 +11,8 @@ function getUserCardDOM(data) {
   const article = document.createElement("article");
 
   article.innerHTML = `
-    <a href="./photographer.html?id=${data.id}">
-        <img src="${data.picture}" alt="${data.name}"> </img>
+    <a href="./photographer.html?id=${data.id}"> 
+      <img src="${data.picture}" alt="${data.name} loading="lazy"></img>
     </a>
 
     <h2>${data.name}</h2>
@@ -37,7 +37,7 @@ function getPhotographerInfos(data) {
     <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
 
     <a href="./photographer.html?id=${data.id}">
-        <img src="${data.picture}" alt="${data.name}"> </img>
+        <img src="${data.picture}" alt="${data.name}> </img>
     </a>      
   `;
   return photographHeader;
@@ -47,12 +47,11 @@ function likesCard(currentPhotographer, currentMedia) {
   console.log(currentMedia);
   let likesTotal = 0;
   let likesCount = likesTotal;
-  // Affichage des données
+  //Récupération des likes
   currentMedia.forEach((currentMedia) => {
     likesCount += currentMedia.likes;
   });
-  //Create card of likes count and price
-  const photographerMedia= document.querySelector(".photograph-media");
+  const photographerMedia = document.querySelector(".photograph-media");
   const likesPrice = document.createElement("div");
   likesPrice.classList.add("likes-price");
   likesPrice.innerHTML = `<span class="likes-count">${likesCount}</span><i class="fa-solid fa-heart"></i><span>${currentPhotographer.price}€ / jour</span>`;

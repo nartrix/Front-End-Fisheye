@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 class Lightbox {
   static init() {
     const medias = Array.from(
@@ -47,7 +46,7 @@ class Lightbox {
     const image = document.createElement("img");
     const video = document.createElement("video");
     container.innerHTML = "";
-
+    // Voir si c'est une image ou une video
     if (url.endsWith(".jpg")) {
       container.appendChild(image);
       image.setAttribute("src", url);

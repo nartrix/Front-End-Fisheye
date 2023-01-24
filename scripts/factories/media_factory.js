@@ -21,21 +21,19 @@ function getPhotographerMedia(currentMedia) {
   const btnLike = document.createElement("button");
   const heart = document.createElement("i");
 
-  //Set attributes and class for the CSS
+  // Ajout des attributs aux medias
   mediaContent.classList.add("media-card");
+  media.setAttribute("loading", "lazy");
   media.setAttribute("src", currentMedia.media);
   media.setAttribute("alt", currentMedia.title);
-  media.setAttribute("tabindex", "0");  
+  media.setAttribute("tabindex", "0");
   divLikes.classList.add("likes");
   heart.classList.add("fa-regular", "fa-heart");
   heart.setAttribute("aria-label", "likes");
-  
 
-  //Text injected in HTML elements
   p.textContent = `${currentMedia.title}`;
   likesNb.textContent = `${currentMedia.likes}`;
 
-  //Add created elements in the DOM
   figure.appendChild(media);
   figure.appendChild(figcaption);
   figcaption.appendChild(p);
