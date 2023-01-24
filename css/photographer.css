@@ -69,11 +69,12 @@
     border-radius: 5px 5px 0 0;
     font-weight: 700;
     font-size: 20px;
-  }
+}
+
 .photograph-media .likes-price i {
     margin-left: 10px;
     margin-right: 40px;
-  }
+}
 
 .media-content{
     display: flex;
@@ -99,6 +100,7 @@
     color: #901C1C;
     width: 100%;
 }
+
 .media-card figcaption p {
     width: 250px;
     text-overflow: ellipsis;
@@ -339,22 +341,6 @@ form .formData[data-error-visible="true"] textarea {
     margin-top: -4px;
     display: flex;
     flex-direction: column;
-    transform-origin: 50% 0%;
-    transition: 0.2s linear;
-}
-
-.sort-list .options :nth-child(1):after {
-    content: " ";
-    padding: 1px 70px;
-    border-radius: 5px;
-    background-color: white;
-    position: absolute;
-    top: 45px;
-    right: 10px;
-}
-
-.sort-list .options :nth-child(2) {
-    border-radius: 0 0 5px 5px;
 }
 
 .chevron-up {
@@ -363,7 +349,6 @@ form .formData[data-error-visible="true"] textarea {
 }
 
 .hidden {
-    transform: scaleY(0);
-    transition: 0.2s linear;
+    display: none;
 }
 

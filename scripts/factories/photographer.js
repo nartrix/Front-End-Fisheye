@@ -43,7 +43,14 @@ function getPhotographerInfos(data) {
   return photographHeader;
 }
 
-function LikesCard(currentPhotographer, likesCount) {
+function likesCard(currentPhotographer, currentMedia) {
+  console.log(currentMedia);
+  let likesTotal = 0;
+  let likesCount = likesTotal;
+  // Affichage des données
+  currentMedia.forEach((currentMedia) => {
+    likesCount += currentMedia.likes;
+  });
   //Create card of likes count and price
   const photographerMedia= document.querySelector(".photograph-media");
   const likesPrice = document.createElement("div");
@@ -52,4 +59,4 @@ function LikesCard(currentPhotographer, likesCount) {
   photographerMedia.appendChild(likesPrice);
 }
 
-export { photographerFactory, getUserCardDOM, getPhotographerInfos, LikesCard };
+export { photographerFactory, getUserCardDOM, getPhotographerInfos, likesCard };

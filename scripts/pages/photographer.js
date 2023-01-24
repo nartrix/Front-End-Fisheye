@@ -1,7 +1,7 @@
 import {
   photographerFactory,
   getPhotographerInfos,
-  LikesCard,
+  likesCard,
 } from "../factories/photographer.js";
 import {
   mediaFactory,
@@ -33,21 +33,14 @@ async function displayData(photographers, media) {
   const photographerModel = photographerFactory(photographers);
   getPhotographerInfos(photographerModel);
   // Filtrer les medias afin de récupérer les medias selon le photographerId
-
   const photographMedia = document.querySelector(".media-content");
-
-  let likesTotal = 0;
-  let likesCount = likesTotal;
-
   // Affichage des données
   media.forEach((currentMedia) => {
     const mediaModel = mediaFactory(currentMedia, photographers);
     const mediaCard = getPhotographerMedia(mediaModel);
     photographMedia.appendChild(mediaCard);
-    likesCount += currentMedia.likes;
   });
 
-  LikesCard(photographers, likesCount);
 }
 
 async function likesClick() {
@@ -82,13 +75,15 @@ async function init() {
   const currentMedias = media.filter(
     (dataMedia) => dataMedia.photographerId === parseInt(photographerId, 10)
   );
-  let sortCurrentMedias = currentMedias.sort((a, b) => (b.likes - a.likes));
+  const sortCurrentMedias = currentMedias.sort((a, b) => (b.likes - a.likes));
+
   displayData(currentPhotographer, sortCurrentMedias);
+  likesCard(currentPhotographer, currentMedias);
   Lightbox.init();
-  sortList(currentPhotographer, sortCurrentMedias);
   likesClick();
+  sortList(currentPhotographer, sortCurrentMedias);
 }
 
 init();
 
-export {displayData};
+export {displayData, likesClick};

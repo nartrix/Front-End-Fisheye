@@ -43,7 +43,6 @@ class Lightbox {
   }
 
   loadImage(url) {
-    console.log(url);
     const container = this.divLightbox.querySelector(".lightbox-container");
     const image = document.createElement("img");
     const video = document.createElement("video");
