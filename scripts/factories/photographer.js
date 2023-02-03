@@ -37,7 +37,7 @@ function getPhotographerInfos(data) {
     <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
 
     <a href="./photographer.html?id=${data.id}">
-        <img src="${data.picture}" alt="${data.name}> </img>
+      <img src="${data.picture}" alt="${data.name}> </img>
     </a>      
   `;
   return photographHeader;

@@ -28,6 +28,7 @@ function getPhotographerMedia(currentMedia) {
   media.setAttribute("alt", currentMedia.title);
   media.setAttribute("tabindex", "0");
   divLikes.classList.add("likes");
+  btnLike.setAttribute("role", "button")
   heart.classList.add("fa-regular", "fa-heart");
   heart.setAttribute("aria-label", "likes");
 
